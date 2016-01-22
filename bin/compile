@@ -12,6 +12,7 @@ MONO3_VM_BINARY="https://github.com/SuaveIO/mono-builder/releases/download/0.0.4
 NUGET_BINARY="https://nuget.org/nuget.exe"
 PAKET_BINARY="https://github.com/fsprojects/Paket/releases/download/2.40.9/paket.exe"
 
+NUGET="${CACHE_DIR}/$STACK/vendor/mono/bin/nuget.exe"
 MOZROOT="${BUILD_DIR}/vendor/mono/lib/mono/4.5/mozroots.exe"
 XBUILD="${BUILD_DIR}/vendor/mono/lib/mono/4.5/xbuild.exe"
 
