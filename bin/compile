@@ -24,11 +24,11 @@ if [ ! -d ${CACHE_DIR}/$STACK/vendor/mono ]; then
     curl $PAKET_BINARY -L -o "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe"
 fi
 
-echo "-----> Copying ${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.5/* to ${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/4.0/"
+echo "-----> Copying ${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.5/* to ${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.0/"
 echo "       This is for Mono on Debian."
-mkdir -p "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/4.0/"
-cp -pr "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.5/Microsoft.FSharp.Targets" "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/4.0/"
-cp -pr "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.5/Microsoft.Portable.FSharp.Targets" "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/4.0/"
+mkdir -p "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.0/"
+cp -pr "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.5/Microsoft.FSharp.Targets" "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.0/"
+cp -pr "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.5/Microsoft.Portable.FSharp.Targets" "${CACHE_DIR}/$STACK/vendor/mono/lib/mono/Microsoft SDKs/F#/3.1/Framework/v4.0/"
 
 mkdir -p ${BUILD_DIR}/vendor
 
