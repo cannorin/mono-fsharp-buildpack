@@ -72,7 +72,7 @@ elif [ -f *.sln ]; then
     mono $NUGET restore $sln -PackagesDirectory packages
   done
   echo "-----> Compiling application"
-  mono $XBUILD
+  mono $XBUILD /p:Configuration=Release
 fi
 
 mkdir -p ${BUILD_DIR}/.profile.d
