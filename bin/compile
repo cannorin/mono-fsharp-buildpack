@@ -53,17 +53,19 @@ elif [ -f paket.dependencies ]; then
   mono /app/mono/bin/paket.exe install
 fi
 
-if [ -f packages.config -o -f */packages.config ]; then
+if [ -f app.fsx ]; then
+  if [ -f packages.config -o -f */packages.config ]; then
    echo "-----> packages.config found, installing dependencies with nuget"
    find  -name packages.config | xargs mono $NUGET install -o packages
-fi
-
-if [ -f app.fsx ]; then
+  fi
   echo "-----> Compiling app.fsx"
   mono /app/mono/lib/mono/4.5/fsc.exe app.fsx
 elif [ -f *.sln ]; then
-   echo "-----> Compiling application"
-   mono $XBUILD
+  for sln in *.sln; do
+    mono $NUGET restore $sln -PackagesDirectory packages
+  done
+  echo "-----> Compiling application"
+  mono $XBUILD
 fi
 
 mkdir -p ${BUILD_DIR}/.profile.d
