@@ -8,9 +8,9 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 # fail fast
 set -e
 
-MONO3_VM_BINARY="https://github.com/SuaveIO/mono-builder/releases/download/0.0.4/mono-3.12.1.tar.gz"
-NUGET_BINARY="https://nuget.org/nuget.exe"
-PAKET_BINARY="https://github.com/fsprojects/Paket/releases/download/2.40.9/paket.exe"
+MONO3_VM_BINARY="https://github.com/SuaveIO/mono-builder/releases/download/0.0.9/mono-4.4.2.11.tar.gz"
+NUGET_BINARY="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+PAKET_BINARY="https://github.com/fsprojects/Paket/releases/download/3.13.3/paket.exe"
 
 NUGET="${BUILD_DIR}/vendor/mono/bin/nuget.exe"
 MOZROOT="${BUILD_DIR}/vendor/mono/lib/mono/4.5/mozroots.exe"
@@ -48,8 +48,10 @@ echo "-----> Setting envvars"
 export PATH="/app/mono/bin:$PATH"
 export LD_LIBRARY_PATH="/app/mono/lib:$LD_LIBRARY_PATH"
 echo "-----> Importing trusted root certificates"
-mono $MOZROOT --sync --import
-cp -r ~/.config ${BUILD_DIR}/.
+cert-sync --quiet --user /etc/ssl/certs/ca-certificates.crt
+
+# cp -r ~/.config ${BUILD_DIR}/.
+
 cd ${BUILD_DIR}
 
 if [ -f paket.lock ]; then
