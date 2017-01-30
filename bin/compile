@@ -38,7 +38,7 @@ cp -pr "${CACHE_DIR}/$STACK/vendor/mono" "${BUILD_DIR}/vendor/"
 rm -fr /app/vendor/mono
 
 # Mono expects to be running out of /app
-echo "-----> Linking ${BUILD_DIR}/vendor/mono --> /app"
+echo "-----> Linking ${BUILD_DIR}/v\endor/mono --> /app"
 ln -s "${BUILD_DIR}/vendor/mono" /app
 
 cp -p /app/mono/bin/fsharpc /app/mono/bin/fsharpc-heroku
@@ -79,3 +79,8 @@ fi
 
 mkdir -p ${BUILD_DIR}/.profile.d
 cp -n ${LP_DIR}/.profile.d/* ${BUILD_DIR}/.profile.d/
+
+PROFILE_PATH="$BUILD_DIR/.profile.d/mozroots.sh"
+echo "#!/bin/sh" >> $PROFILE_PATH
+echo "mono /app/mono/lib/mono/4.5/mozroots.exe --import --sync" >> $PROFILE_PATH
+chmod +x $PROFILE_PATH
